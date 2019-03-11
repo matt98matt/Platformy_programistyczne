@@ -1,0 +1,41 @@
+﻿<Window x:Class="Lab01.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab01"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox Margin="20" ItemsSource="{Binding Items}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Name}" Width="100"/>
+                        <TextBlock Text="{Binding Path=Age}" Width="100"/>
+                        <Image Height ="50" Width="50" Source="{Binding Path=MyImagePath}"></Image>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1" Margin="20" Orientation="Vertical">
+            <TextBlock TextWrapping="Wrap" Text="Name"/>
+            <TextBox Name ="nameTextBox" Height="23" TextWrapping="Wrap" Text="Jarosław" Margin="0,0,0,10"/>
+            <TextBlock TextWrapping="Wrap" Text="Age"/>
+            <TextBox Name="ageTextBox" Height="23" TextWrapping="Wrap" Text="99"  Margin="0,0,0,10"/>
+            <Image x:Name="Image" Height="50"/>
+            <Button Name = "addNewPersonButton" Content="Add new person" Click="AddNewPersonButton_Click"/>
+            <Image x:Name="Image1" Height="50" Source="D:\Pobrane\Lab01\Lab01\Images\pilka1.jpg"/>
+            <Button Name="addPhoto1" Content="Add photo up" Click="AddPhoto1_Click" Background="#FFC3A9A9"/>
+            <Image x:Name="Image2" Height="50" Source="D:\Pobrane\Lab01\Lab01\Images\pilka2.jpg"/>
+            <Button Name="addPhoto2" Content="Add photo up" Click="AddPhoto2_Click"></Button>
+            <Image x:Name="Image3" Height="50" Source="D:\Pobrane\Lab01\Lab01\Images\pilka3.jpg"/>
+            <Button Name="addPhoto3" Content="Add photo up" Click="AddPhoto3_Click"></Button>
+        </StackPanel>
+        <Image x:Name="MainImage" Height="50"/>
+    </Grid>
+</Window>

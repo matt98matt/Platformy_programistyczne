@@ -1,0 +1,15 @@
+D:\Pobrane\Lab01\Lab01\bin\Debug\Lab01.exe.config
+D:\Pobrane\Lab01\Lab01\bin\Debug\Lab01.exe
+D:\Pobrane\Lab01\Lab01\bin\Debug\Lab01.pdb
+D:\Pobrane\Lab01\Lab01\obj\Debug\Lab01.csprojAssemblyReference.cache
+D:\Pobrane\Lab01\Lab01\obj\Debug\MainWindow.g.cs
+D:\Pobrane\Lab01\Lab01\obj\Debug\App.g.cs
+D:\Pobrane\Lab01\Lab01\obj\Debug\Lab01_MarkupCompile.cache
+D:\Pobrane\Lab01\Lab01\obj\Debug\Lab01_MarkupCompile.lref
+D:\Pobrane\Lab01\Lab01\obj\Debug\MainWindow.baml
+D:\Pobrane\Lab01\Lab01\obj\Debug\Lab01.g.resources
+D:\Pobrane\Lab01\Lab01\obj\Debug\Lab01.Properties.Resources.resources
+D:\Pobrane\Lab01\Lab01\obj\Debug\Lab01.csproj.GenerateResource.cache
+D:\Pobrane\Lab01\Lab01\obj\Debug\Lab01.csproj.CoreCompileInputs.cache
+D:\Pobrane\Lab01\Lab01\obj\Debug\Lab01.exe
+D:\Pobrane\Lab01\Lab01\obj\Debug\Lab01.pdb
