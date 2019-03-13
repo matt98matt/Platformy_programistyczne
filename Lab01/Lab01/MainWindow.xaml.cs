@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace Lab01
 {
@@ -24,8 +25,6 @@ namespace Lab01
     {
         ObservableCollection<Person> people = new ObservableCollection<Person>
         {
-            new Person { Name = "P1", Age = 1, MyImagePath = ""},
-            new Person { Name = "P2", Age = 2, MyImagePath ="" }
         };
 
         public ObservableCollection<Person> Items
@@ -58,22 +57,29 @@ namespace Lab01
             }
         }
 
-        private void AddPhoto1_Click(object sender, RoutedEventArgs e)
-        {
-            Person.ImagePath = "D:/Pobrane/Lab01/Lab01/Images/pilka1.jpg";
-            Image.Source = new BitmapImage(new Uri(Person.ImagePath));
-        }
 
-        private void AddPhoto2_Click(object sender, RoutedEventArgs e)
-        {
-            Person.ImagePath = "D:/Pobrane/Lab01/Lab01/Images/pilka2.jpg";
-            Image.Source = new BitmapImage(new Uri(Person.ImagePath));
-        }
 
-        private void AddPhoto3_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Person.ImagePath = "D:/Pobrane/Lab01/Lab01/Images/pilka3.jpg";
-            Image.Source = new BitmapImage(new Uri(Person.ImagePath));
+            var filePath = string.Empty;
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = "C:\\Users\\micha\\Desktop\\PlatformyProgramistyczne\\Lab01\\Lab01\\Images";
+            openFileDialog.Filter = "jpeg files (*.jpg)|*.jpg|All files (*.*)|*.*";
+            openFileDialog.FilterIndex = 2;
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                //Get the path of specified file
+                filePath = openFileDialog.FileName;
+            }
+            if (filePath != "")
+            {
+
+                Person.ImagePath = filePath;
+                Image.Source = new BitmapImage(new Uri(filePath));
+            }
         }
     }
 }

@@ -28,13 +28,9 @@
             <TextBlock TextWrapping="Wrap" Text="Age"/>
             <TextBox Name="ageTextBox" Height="23" TextWrapping="Wrap" Text="99"  Margin="0,0,0,10"/>
             <Image x:Name="Image" Height="50"/>
-            <Button Name = "addNewPersonButton" Content="Add new person" Click="AddNewPersonButton_Click"/>
-            <Image x:Name="Image1" Height="50" Source="D:\Pobrane\Lab01\Lab01\Images\pilka1.jpg"/>
-            <Button Name="addPhoto1" Content="Add photo up" Click="AddPhoto1_Click" Background="#FFC3A9A9"/>
-            <Image x:Name="Image2" Height="50" Source="D:\Pobrane\Lab01\Lab01\Images\pilka2.jpg"/>
-            <Button Name="addPhoto2" Content="Add photo up" Click="AddPhoto2_Click"></Button>
-            <Image x:Name="Image3" Height="50" Source="D:\Pobrane\Lab01\Lab01\Images\pilka3.jpg"/>
-            <Button Name="addPhoto3" Content="Add photo up" Click="AddPhoto3_Click"></Button>
+            <Button Content="Add photo to person" Margin="20" Click="Button_Click"/>
+            <Button Name = "addNewPersonButton" Content="Add new person" Margin="20px" Click="AddNewPersonButton_Click"/>
+            
         </StackPanel>
         <Image x:Name="MainImage" Height="50"/>
     </Grid>
