@@ -30,8 +30,9 @@
             <Image x:Name="Image" Height="50"/>
             <Button Content="Add photo to person" Margin="20" Click="Button_Click"/>
             <Button Name = "addNewPersonButton" Content="Add new person" Margin="20px" Click="AddNewPersonButton_Click"/>
+            <Button Name = "addAsyncAdd" Content="Start async" Margin="20px" Click="AddAsyncAdd_Click" />
             
         </StackPanel>
-        <Image x:Name="MainImage" Height="50"/>
+        <Image x:Name="MainImage"  Height="50"/>
     </Grid>
 </Window>
