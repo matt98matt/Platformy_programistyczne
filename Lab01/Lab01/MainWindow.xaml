@@ -14,10 +14,10 @@
         <ListBox Margin="20" ItemsSource="{Binding Items}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Background="#ccc">
                         <TextBlock Text="{Binding Path=Name}" Width="100"/>
                         <TextBlock Text="{Binding Path=Age}" Width="100"/>
-                        <Image Height ="50" Width="50" Source="{Binding Path=MyImagePath}"></Image>
+                        <Image Height ="50" Width="50" Source="{Binding Path=MyImagePath}" OpacityMask="black"></Image>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

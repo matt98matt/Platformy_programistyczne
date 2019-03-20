@@ -14,5 +14,6 @@ namespace Lab01
         public string MyImagePath { get; set; }
         public static string ImagePath { get; set; }
         public static string WebImagePath { get; set; }
+        public static string WebImageAllPath { get; set; }
     }
 }

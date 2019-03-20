@@ -112,8 +112,8 @@ namespace Lab01
             {
                 // GetStringAsync returns a Task<string>. That means that when you await the  
                 // task you'll get a string (urlContents).  
-                Task<string> getStringTask = client.GetStringAsync("https://docs.microsoft.com");
-
+                //Task<string> getStringTask = client.GetStringAsync("https://docs.microsoft.com");
+                Task<string> getStringTask = client.GetStringAsync("https://www.adobe.com/pl/creativecloud.html?gclid=EAIaIQobChMImbbUqcOR4QIV1cAYCh0thgIiEAAYASAAEgIjVfD_BwE&sdid=8JD95K3R&mv=search&skwcid=AL!3085!3!281619997375!e!!g!!adobe&ef_id=EAIaIQobChMImbbUqcOR4QIV1cAYCh0thgIiEAAYASAAEgIjVfD_BwE:G:s&s_kwcid=AL!3085!3!281619997375!e!!g!!adobe");
                 // The await operator suspends AccessTheWebAsync.  
                 //  - AccessTheWebAsync can't continue until getStringTask is complete.  
                 //  - Meanwhile, control returns to the caller of AccessTheWebAsync.  
@@ -131,19 +131,20 @@ namespace Lab01
         {
             Task<string> dane = AccessTheWebAsync();
             string _dane = await dane;
-            string[] stringSeparators = new string[] {"\"og:image\" content=\""};
+            //string[] stringSeparators = new string[] {"\"og:image\" content=\""};
+            string[] stringSeparators = new string[] {"src=\"/content/",".png"};
             string[] result;
 
             result = _dane.Split(stringSeparators,
                 StringSplitOptions.RemoveEmptyEntries);
 
-            stringSeparators = new string[] {".png"};
+          //  stringSeparators = new string[] {".png"};
 
-        string[] result1 = result[1].Split(stringSeparators,
-                StringSplitOptions.RemoveEmptyEntries);
-
-        Person.WebImagePath = result1[0] + ".png";
-
+        //string[] result1 = result[1].Split(stringSeparators,
+       //         StringSplitOptions.RemoveEmptyEntries);
+       Person.WebImageAllPath = "https://www.adobe.com/content/" + result[3] + ".png" + " https://www.adobe.com/content/" + result[5] + ".png" + " https://www.adobe.com/content/" + result[7] + ".png" + " https://www.adobe.com/content/" + result[9] + ".png" + " https://www.adobe.com/content/" + result[11] + ".png";
+       // Person.WebImagePath = result1[0] + ".png";
+       
         var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
         dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -153,7 +154,13 @@ namespace Lab01
         private async void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             int _age = 5;
-            people.Add(new Person { Age = _age, Name = nameTextBox.Text, MyImagePath = Person.WebImagePath });
+            string[] result;
+            result = Person.WebImageAllPath.Split(new string[] {" "},
+                StringSplitOptions.RemoveEmptyEntries);
+            Random rnd = new Random();
+        Person.WebImagePath = result[rnd.Next(0,5)];
+            //people.Add(new Person { Age = _age, Name = nameTextBox.Text, MyImagePath = Person.WebImagePath });
+            people.Add(new Person { Age = (Person.WebImagePath.Length - rnd.Next(0,60)), Name = nameTextBox.Text, MyImagePath = Person.WebImagePath });
         }
     }
 }

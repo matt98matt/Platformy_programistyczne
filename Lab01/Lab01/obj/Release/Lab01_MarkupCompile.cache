@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\Users\Mateusz\Desktop\pwr6\Platformy_progarmistyczne\Platformy_programistyczne\Lab01\Lab01\obj\Debug\
+C:\Users\Mateusz\Desktop\pwr6\Platformy_progarmistyczne\Platformy_programistyczne\Lab01\Lab01\obj\Release\
 Lab01
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\Mateusz\Desktop\pwr6\Platformy_progarmistyczne\Platformy_programistyczne\Lab01\Lab01\App.xaml
 11151548125
 
@@ -16,5 +16,5 @@ C:\Users\Mateusz\Desktop\pwr6\Platformy_progarmistyczne\Platformy_programistyczn
 14434534373
 MainWindow.xaml;
 
-False
+True
 
