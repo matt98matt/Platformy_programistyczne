@@ -28,9 +28,13 @@
             <TextBlock TextWrapping="Wrap" Text="Age"/>
             <TextBox Name="ageTextBox" Height="23" TextWrapping="Wrap" Text="99"  Margin="0,0,0,10"/>
             <Image x:Name="Image" Height="50"/>
-            <Button Content="Add photo to person" Margin="20" Click="Button_Click"/>
-            <Button Name = "addNewPersonButton" Content="Add new person" Margin="20px" Click="AddNewPersonButton_Click"/>
-            <Button Name = "addAsyncAdd" Content="Start async" Margin="20px" Click="AddAsyncAdd_Click" />
+            <Button Content="Add photo to person" Margin="2" Click="Button_Click"/>
+            <Button x:Name = "addNewPersonButton" Content="Add new person" Margin="2px" Click="AddNewPersonButton_Click"/>
+            <Button Name = "addAsyncAdd" Content="Start async" Margin="2px" Click="AddAsyncAdd_Click" />
+            <Button x:Name="weatherDataButton" Content="Load the weather data from the known locations" Click="WeatherDataButton_Click" />
+            <ProgressBar x:Name="weatherDataProgressBar" Height="20"/>
+            <TextBlock x:Name="weatherDataTextBlock" />
+            <Button Content="CANCEL" Click="Button_Click_1"/>
             
         </StackPanel>
         <Image x:Name="MainImage"  Height="50"/>

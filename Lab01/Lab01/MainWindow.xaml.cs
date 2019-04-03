@@ -17,6 +17,9 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Net.Http;
 using System.Xml;
+using System.ComponentModel;
+using System.Drawing.Printing;
+using System.Threading;
 
 namespace Lab01
 {
@@ -26,8 +29,9 @@ namespace Lab01
     ///
     ///
 
-    class WaitingAnimation
+    class WaitingAnimation 
     {
+        
         private int maxNumberOfDots;
         private int currentDots;
         private MainWindow sender;
@@ -44,6 +48,7 @@ namespace Lab01
 
     public partial class MainWindow : Window
     {
+        BackgroundWorker worker = new BackgroundWorker();
         ObservableCollection<Person> people = new ObservableCollection<Person>
         {
         };
@@ -57,6 +62,11 @@ namespace Lab01
         {
             InitializeComponent();
             DataContext = this;
+
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+            worker.DoWork += Worker_DoWork;
+            worker.ProgressChanged += Worker_ProgressChanged;
         }
         
         private void AddNewPersonButton_Click(object sender, RoutedEventArgs e)
@@ -103,7 +113,10 @@ namespace Lab01
             }
         }
 
-
+        public void AddPerson(Person person)
+        {
+            Application.Current.Dispatcher.Invoke(() => { Items.Add(person); });
+        }
 
         async Task<string> AccessTheWebAsync()
         {
@@ -160,7 +173,82 @@ namespace Lab01
             Random rnd = new Random();
         Person.WebImagePath = result[rnd.Next(0,5)];
             //people.Add(new Person { Age = _age, Name = nameTextBox.Text, MyImagePath = Person.WebImagePath });
-            people.Add(new Person { Age = (Person.WebImagePath.Length - rnd.Next(0,60)), Name = nameTextBox.Text, MyImagePath = Person.WebImagePath });
+            //people.Add(new Person { Age = (Person.WebImagePath.Length - rnd.Next(0,60)), Name = nameTextBox.Text, MyImagePath = Person.WebImagePath });
         }
+
+        private async void WeatherDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            string responseXML = await WeatherConnection.LoadDataAsync("Wrocław");
+            WeatherDataEntry result;
+
+            using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(responseXML)))
+            {
+                result = ParseWheater_LINQ.Parse(stream);
+                Items.Add(new Person()
+                {
+                    Name = result.City,
+                    Age = (int)Math.Round(result.Temperature)
+                });
+            }
+
+            if (worker.IsBusy != true)
+                worker.RunWorkerAsync();
+        }
+
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            weatherDataProgressBar.Value = e.ProgressPercentage;
+            weatherDataTextBlock.Text = e.UserState as string;
+        }
+
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            List<string> cities = new List<string> {
+                "London", "Warsaw", "Paris", "London", "Warsaw", "Poznań", "Łódź", "Gdańsk", "Cork" };
+            for (int i = 1; i <= cities.Count; i++)
+            {
+                string city = cities[i - 1];
+
+                if (worker.CancellationPending == true)
+                {
+                    worker.ReportProgress(0, "Cancelled");
+                    e.Cancel = true;
+                    return;
+                }
+                else
+                {
+                    worker.ReportProgress(
+                        (int)Math.Round((float)i * 100.0 / (float)cities.Count),
+                        "Loading " + city + "...");
+                    string responseXML = WeatherConnection.LoadDataAsync(city).Result;
+                    WeatherDataEntry result;
+
+                    using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(responseXML)))
+                    {
+                        result = ParseWheater_LINQ.Parse(stream);
+                        Person ppl = new Person();
+                        ppl.Name = result.City;
+                        ppl.Age = (int)Math.Round(result.Temperature);
+
+                        AddPerson(ppl);
+                       
+                    }
+                    Thread.Sleep(2000);
+                }
+            }
+            worker.ReportProgress(100, "Done");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (worker.WorkerSupportsCancellation == true)
+            {
+                weatherDataTextBlock.Text = "Cancelling...";
+                worker.CancelAsync();
+            }
+        }
+
     }
 }
