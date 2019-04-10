@@ -145,7 +145,7 @@ namespace Lab01
             Task<string> dane = AccessTheWebAsync();
             string _dane = await dane;
             //string[] stringSeparators = new string[] {"\"og:image\" content=\""};
-            string[] stringSeparators = new string[] {"src=\"/content/",".png"};
+            string[] stringSeparators = new string[] {"src=\"/content/",".jpg"};
             string[] result;
 
             result = _dane.Split(stringSeparators,
@@ -155,9 +155,9 @@ namespace Lab01
 
         //string[] result1 = result[1].Split(stringSeparators,
        //         StringSplitOptions.RemoveEmptyEntries);
-       Person.WebImageAllPath = "https://www.adobe.com/content/" + result[3] + ".png" + " https://www.adobe.com/content/" + result[5] + ".png" + " https://www.adobe.com/content/" + result[7] + ".png" + " https://www.adobe.com/content/" + result[9] + ".png" + " https://www.adobe.com/content/" + result[11] + ".png";
+       Person.WebImageAllPath = "https://www.adobe.com/content/" + result[19] + ".jpg" + " https://www.adobe.com/content/" + result[15] + ".jpg" + " https://www.adobe.com/content/" + result[13] + ".jpg" + " https://www.adobe.com/content/" + result[21] + ".jpg" + " https://www.adobe.com/content/" + result[1] + ".jpg";
        // Person.WebImagePath = result1[0] + ".png";
-       
+       var hehe = Person.WebImageAllPath;
         var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
         dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -173,7 +173,7 @@ namespace Lab01
             Random rnd = new Random();
         Person.WebImagePath = result[rnd.Next(0,5)];
             //people.Add(new Person { Age = _age, Name = nameTextBox.Text, MyImagePath = Person.WebImagePath });
-            //people.Add(new Person { Age = (Person.WebImagePath.Length - rnd.Next(0,60)), Name = nameTextBox.Text, MyImagePath = Person.WebImagePath });
+            people.Add(new Person { Age = (Person.WebImagePath.Length - rnd.Next(0,20)), Name = nameTextBox.Text, MyImagePath = Person.WebImagePath });
         }
 
         private async void WeatherDataButton_Click(object sender, RoutedEventArgs e)

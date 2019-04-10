@@ -35,8 +35,7 @@
             <ProgressBar x:Name="weatherDataProgressBar" Height="20"/>
             <TextBlock x:Name="weatherDataTextBlock" />
             <Button Content="CANCEL" Click="Button_Click_1"/>
-            
+
         </StackPanel>
-        <Image x:Name="MainImage"  Height="50"/>
     </Grid>
 </Window>
