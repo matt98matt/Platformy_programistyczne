@@ -5,37 +5,138 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <ListBox Margin="20" ItemsSource="{Binding Items}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Background="#ccc">
-                        <TextBlock Text="{Binding Path=Name}" Width="100"/>
-                        <TextBlock Text="{Binding Path=Age}" Width="100"/>
-                        <Image Height ="50" Width="50" Source="{Binding Path=MyImagePath}" OpacityMask="black"></Image>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Grid.Column="1" Margin="20" Orientation="Vertical">
-            <TextBlock TextWrapping="Wrap" Text="Name"/>
-            <TextBox Name ="nameTextBox" Height="23" TextWrapping="Wrap" Text="Jarosław" Margin="0,0,0,10"/>
-            <TextBlock TextWrapping="Wrap" Text="Age"/>
-            <TextBox Name="ageTextBox" Height="23" TextWrapping="Wrap" Text="99"  Margin="0,0,0,10"/>
-            <Image x:Name="Image" Height="50"/>
-            <Button Content="Add photo to person" Margin="2" Click="Button_Click"/>
-            <Button x:Name = "addNewPersonButton" Content="Add new person" Margin="2px" Click="AddNewPersonButton_Click"/>
-            <Button Name = "addAsyncAdd" Content="Start async" Margin="2px" Click="AddAsyncAdd_Click" />
-            <Button x:Name="weatherDataButton" Content="Load the weather data from the known locations" Click="WeatherDataButton_Click" />
-            <ProgressBar x:Name="weatherDataProgressBar" Height="20"/>
-            <TextBlock x:Name="weatherDataTextBlock" />
-            <Button Content="CANCEL" Click="Button_Click_1"/>
+        Title="MainWindow" Height="784" Width="1000" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Window.Resources>
+        <CollectionViewSource x:Key="personEntryViewSource"  d:DesignSource="{d:DesignInstance {x:Type local:Test}, CreateList=True}"/>
+        <CollectionViewSource x:Key="wheaterEntryViewSource"  d:DesignSource="{d:DesignInstance {x:Type local:Table}, CreateList=True}"/>
+        <CollectionViewSource x:Key="personEntitiesViewSource" d:DesignSource="{d:DesignInstance {x:Type local:TestEntities1}, CreateList=True}"/>
+        <CollectionViewSource x:Key="personEntitiesWeatherEntriesViewSource" Source="{Binding TestEntitles1, Source={StaticResource personEntitiesViewSource}}"/>
 
-        </StackPanel>
+
+    </Window.Resources>
+    <Grid Background="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" Margin="0,0,0,-83">
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="BorderBrush" Value="YellowGreen" />
+                <Setter Property="Background" Value="LightGreen" />
+                <Setter Property="Margin" Value="2" />
+            </Style>
+        </Grid.Resources>
+        <Grid.DataContext>
+            <StaticResource ResourceKey="personEntitiesWeatherEntriesViewSource"/>
+        </Grid.DataContext>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="grid2" VerticalAlignment="Top" Margin="10,20,0,0" HorizontalAlignment="Left" DataContext="{StaticResource wheaterEntryViewSource}" Width="320" Height="96" Grid.ColumnSpan="2" Grid.Column="1" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="28"/>
+                <RowDefinition Height="4"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="City:" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="cityTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="0" Margin="100,4,0,6" Height="24" HorizontalAlignment="Left" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Temperature:" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="temperatureTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="3" Margin="100,4,0,1" Height="24" HorizontalAlignment="Left" Grid.Column="1" Grid.ColumnSpan="2"/>
+        </Grid>
+        <Button x:Name="btnAddWheater" Content="Add wheater" Grid.Column="2" HorizontalAlignment="Left" Margin="222,20,0,0" VerticalAlignment="Top" Width="74" Click="BtnAddWheater_Click" Height="72"/>
+        <TextBox x:Name="searchTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="0,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
+        <Label x:Name="searchLabel" Content="Write city to check weather" Grid.Column="2" HorizontalAlignment="Left" Margin="0,121,0,0" VerticalAlignment="Top" Width="165"/>
+        <Button x:Name="searchBtn" Content="Check" Grid.Column="2" HorizontalAlignment="Left" Margin="186,152,0,0" VerticalAlignment="Top" Width="76" Click="SearchClick"/>
+        <Button x:Name="btnAddAllWheater" Content="Add wheater from someplaces" Grid.Column="2" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top" Width="286" Click="BtnAddAllWheater_Click" Height="36"/>
+        <ProgressBar x:Name="weatherDataProgressBar" Height="20" Grid.Column="2" Margin="0,258,0,558"/>
+        <TextBlock x:Name="weatherDataTextBlock" Margin="0,283,10,467" Grid.Column="2"/>
+        <Button x:Name="cancelLoad" Content="Cancel" Grid.Column="2" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top" Width="286" Click="CancelLoadWheater" Height="36"/>
+        <DataGrid x:Name="weatherEntryDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource wheaterEntryViewSource}}" Margin="10,10,32,324" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idWheaterColumn1" Binding="{Binding Id}" Header="Id" Width="auto"/>
+                <DataGridTextColumn x:Name="cityColumn1" Binding="{Binding City}" Header="City" Width="auto"/>
+                <DataGridTextColumn x:Name="temperatureColumn1" Binding="{Binding Temperature}" Header="Temperature" Width="auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+
+
+
+
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,20,0,0" HorizontalAlignment="Left" DataContext="{StaticResource personEntryViewSource}" Grid.Column="4" Width="176" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="28"/>
+                <RowDefinition Height="4"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Name:" Grid.RowSpan="2"/>
+            <TextBox x:Name="nameTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="0" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Grid.RowSpan="2"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Id:"/>
+            <TextBox x:Name="idTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Age:" Grid.RowSpan="2"/>
+            <TextBox x:Name="ageTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="3" Margin="3,4,0,0" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
+        </Grid>
+        <Button x:Name="btnAddPerson" Content="Add person" Grid.Column="4" HorizontalAlignment="Left" Margin="213,20,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddPerson_Click" Height="96"/>
+        <DataGrid x:Name="personrEntryDataGrid" AutoGenerateColumns="False" Grid.Column="4" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource personEntryViewSource}}" Margin="10,137,32,324" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn1" Binding="{Binding Id}" Header="Id" Width="auto"/>
+                <DataGridTextColumn x:Name="nameColumn1" Binding="{Binding Name}" Header="Name" Width="auto"/>
+                <DataGridTextColumn x:Name="ageColumn1" Binding="{Binding Age}" Header="Age" Width="auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="OpenSettingsBtn" Content="Settings" HorizontalAlignment="Left" Margin="80,686,0,0" VerticalAlignment="Top" Width="75" Grid.Column="4" Click="OpenSettingsBtn_Click"/>
+        <Button x:Name="deleteAllWeatersBtn" Content="Delete All Weaters" HorizontalAlignment="Left" Margin="42,631,0,0" VerticalAlignment="Top" Width="118" Click="DeleteAllWeatersBtn_Click"/>
+        <Button x:Name="DeleteAllPersonsBtn" Content="Delete All Persons" Grid.Column="4" HorizontalAlignment="Left" Margin="40,616,0,0" VerticalAlignment="Top" Width="121" Click="DeleteAllPersonsBtn_Click"/>
+        <Button x:Name="DeleteWeaterBtn" Content="Delete one entity on weaters" HorizontalAlignment="Left" Margin="42,573,0,0" VerticalAlignment="Top" Width="188" Click="DeleteWeaterBtn_Click" IsEnabled="False"/>
+        <TextBox x:Name="idWeaterToDeleteTextBox" HorizontalAlignment="Left" Height="23" Margin="42,532,0,0" TextWrapping="Wrap" Text="Write ID weater to delete" VerticalAlignment="Top" Width="188" GotFocus="IdWeaterToDeleteTextBox_GotFocus"  />
+        <TextBox x:Name="idPersonToDeleteTextBox" Grid.Column="4" HorizontalAlignment="Left" Height="23" Margin="25,518,0,0" TextWrapping="Wrap" Text="Write ID person to delete" VerticalAlignment="Top" Width="263" GotFocus="IdPersonToDelete_GotFocus"/>
+        <Button x:Name="deletePersonBtn" Content="Delete this person" Grid.Column="4" HorizontalAlignment="Left" Margin="40,558,0,0" VerticalAlignment="Top" Width="146" IsEnabled="False" Click="DeletePersonBtn_Click"/>
+        <Grid Grid.Column="2" HorizontalAlignment="Left" Height="459" Margin="0,361,0,0" VerticalAlignment="Top" Width="320" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="CheckWeaterWelcomeTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Last update in app:" VerticalAlignment="Top" Width="276" TextAlignment="Center" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterNameCityTextBlock" HorizontalAlignment="Left" Margin="0,31,0,0" TextWrapping="Wrap" Text="Name of city" VerticalAlignment="Top" TextAlignment="Center" Width="143" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterCityCountry" HorizontalAlignment="Left" Margin="197,31,0,0" TextWrapping="Wrap" Text="Country" VerticalAlignment="Top" Width="113" TextAlignment="Center" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterSunriseTextBlock" HorizontalAlignment="Left" Margin="0,59,0,0" TextWrapping="Wrap" Text="Sunrise " VerticalAlignment="Top" TextAlignment="Center" Width="143" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterSunriseValueTextBlock" HorizontalAlignment="Left" Margin="10,88,0,0" TextWrapping="Wrap" Text="hour" VerticalAlignment="Top" TextAlignment="Center" Width="143" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterSunsetTextBlock" HorizontalAlignment="Left" Margin="177,62,0,0" TextWrapping="Wrap" Text="Sunset " VerticalAlignment="Top" TextAlignment="Center" Width="143" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterSunsetValueTextBlock" HorizontalAlignment="Left" Margin="167,88,0,0" TextWrapping="Wrap" Text="hour" VerticalAlignment="Top" TextAlignment="Center" Width="143" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterWindTextBlock" HorizontalAlignment="Left" Margin="79,109,0,0" TextWrapping="Wrap" Text="Wind:" VerticalAlignment="Top" TextAlignment="Center" Width="143" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterWindSpeedNameTextBlock" HorizontalAlignment="Left" Margin="0,130,0,0" TextWrapping="Wrap" Text="speed name" VerticalAlignment="Top" TextAlignment="Center" Width="143" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterWindDirectionNameTextBlock" HorizontalAlignment="Left" Margin="167,130,0,0" TextWrapping="Wrap" Text="direction name" VerticalAlignment="Top" TextAlignment="Center" Width="143" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterTextBlock" HorizontalAlignment="Left" Margin="10,159,0,0" TextWrapping="Wrap" Text="Weater " VerticalAlignment="Top" TextAlignment="Center" Width="143" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterCloudsTextBlock" HorizontalAlignment="Left" Margin="167,162,0,0" TextWrapping="Wrap" Text="Clouds " VerticalAlignment="Top" TextAlignment="Center" Width="143" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterValueTextBlock" HorizontalAlignment="Left" Margin="0,192,0,0" TextWrapping="Wrap" Text="Weater value" VerticalAlignment="Top" TextAlignment="Center" Width="143" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckCloudsNameTextBlock" HorizontalAlignment="Left" Margin="167,192,0,0" TextWrapping="Wrap" Text="Cloud name" VerticalAlignment="Top" TextAlignment="Center" Width="143" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterLastUpdateTextBlock" HorizontalAlignment="Left" Margin="16,283,0,0" TextWrapping="Wrap" Text="Last update: rrrr-mm-dd hh-mm-ss" VerticalAlignment="Top" Width="294" Height="37" FontWeight="Bold" TextDecorations="Underline" FontSize="16" TextAlignment="Center" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterTemperatureTextBlock" HorizontalAlignment="Left" Margin="92,213,0,0" TextWrapping="Wrap" Text="Temperature:" VerticalAlignment="Top" TextAlignment="Center" Width="143" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterTemperatureMinTextBlock" HorizontalAlignment="Left" Margin="10,252,0,0" TextWrapping="Wrap" Text="Temperature Minimal" VerticalAlignment="Top" TextAlignment="Center" Width="143" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="CheckWeaterTemperatureMaxTextBlock" HorizontalAlignment="Left" Margin="158,252,0,0" TextWrapping="Wrap" Text="Temperature Maximal" VerticalAlignment="Top" TextAlignment="Center" Width="143" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="DotGeneratorTextBlock" HorizontalAlignment="Left" Margin="16,290,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold" FontSize="48" Height="63" Width="285" TextAlignment="Center" Grid.ColumnSpan="2"/>
+        </Grid>
+
+
+
+
+
+
     </Grid>
 </Window>

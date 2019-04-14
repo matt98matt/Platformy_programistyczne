@@ -22,5 +22,53 @@ namespace Lab01.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Wrocław")]
+        public string City {
+            get {
+                return ((string)(this["City"]));
+            }
+            set {
+                this["City"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Polish")]
+        public string Language {
+            get {
+                return ((string)(this["Language"]));
+            }
+            set {
+                this["Language"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("www.google.pl")]
+        public string Url {
+            get {
+                return ((string)(this["Url"]));
+            }
+            set {
+                this["Url"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int HowManyTimesItIsRunning {
+            get {
+                return ((int)(this["HowManyTimesItIsRunning"]));
+            }
+            set {
+                this["HowManyTimesItIsRunning"] = value;
+            }
+        }
     }
 }
