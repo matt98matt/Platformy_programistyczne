@@ -4,7 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab01"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
         mc:Ignorable="d"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="MainWindow" Height="784" Width="1000" Loaded="Window_Loaded" Closed="Window_Closed">
     <Window.Resources>
         <CollectionViewSource x:Key="personEntryViewSource"  d:DesignSource="{d:DesignInstance {x:Type local:Test}, CreateList=True}"/>
@@ -14,11 +22,10 @@
 
 
     </Window.Resources>
-    <Grid Background="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" Margin="0,0,0,-83">
-        <Grid.Resources>
+    
+    <Grid  Margin="0,0,0,-83">
+        <Grid.Resources> 
             <Style TargetType="{x:Type Button}">
-                <Setter Property="BorderBrush" Value="YellowGreen" />
-                <Setter Property="Background" Value="LightGreen" />
                 <Setter Property="Margin" Value="2" />
             </Style>
         </Grid.Resources>
@@ -33,7 +40,7 @@
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="grid2" VerticalAlignment="Top" Margin="10,20,0,0" HorizontalAlignment="Left" DataContext="{StaticResource wheaterEntryViewSource}" Width="320" Height="96" Grid.ColumnSpan="2" Grid.Column="1" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+        <Grid x:Name="grid2" VerticalAlignment="Top" Margin="10,20,0,0" HorizontalAlignment="Left" DataContext="{StaticResource wheaterEntryViewSource}" Width="320" Height="96" Grid.ColumnSpan="2" Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="10"/>
@@ -47,18 +54,19 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="City:" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="cityTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="0" Margin="100,4,0,6" Height="24" HorizontalAlignment="Left" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="cityTextBox" Width="220" VerticalAlignment="Center"  Grid.Row="0" Margin="100,4,0,6" Height="24" HorizontalAlignment="Left" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Temperature:" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="temperatureTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="3" Margin="100,4,0,1" Height="24" HorizontalAlignment="Left" Grid.Column="1" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="temperatureTextBox" Width="220" VerticalAlignment="Center"  Grid.Row="3" Margin="100,4,0,1" Height="24" HorizontalAlignment="Left" Grid.Column="1" Grid.ColumnSpan="2" />
+            
         </Grid>
-        <Button x:Name="btnAddWheater" Content="Add wheater" Grid.Column="2" HorizontalAlignment="Left" Margin="222,20,0,0" VerticalAlignment="Top" Width="74" Click="BtnAddWheater_Click" Height="72"/>
+        <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="btnAddWheater" Content="Add wheater" Grid.Column="2" HorizontalAlignment="Left" Margin="185,88,0,0" VerticalAlignment="Top" Width="120" Click="BtnAddWheater_Click" Height="30"/>
         <TextBox x:Name="searchTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="0,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
         <Label x:Name="searchLabel" Content="Write city to check weather" Grid.Column="2" HorizontalAlignment="Left" Margin="0,121,0,0" VerticalAlignment="Top" Width="165"/>
-        <Button x:Name="searchBtn" Content="Check" Grid.Column="2" HorizontalAlignment="Left" Margin="186,152,0,0" VerticalAlignment="Top" Width="76" Click="SearchClick"/>
-        <Button x:Name="btnAddAllWheater" Content="Add wheater from someplaces" Grid.Column="2" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top" Width="286" Click="BtnAddAllWheater_Click" Height="36"/>
+        <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="searchBtn" Content="Check" Grid.Column="2" HorizontalAlignment="Left" Margin="186,152,0,0" VerticalAlignment="Top" Width="120" Click="SearchClick"/>
+        <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="btnAddAllWheater" Content="Add wheater from someplaces" Grid.Column="2" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top" Width="286" Click="BtnAddAllWheater_Click" Height="36"/>
         <ProgressBar x:Name="weatherDataProgressBar" Height="20" Grid.Column="2" Margin="0,258,0,558"/>
         <TextBlock x:Name="weatherDataTextBlock" Margin="0,283,10,467" Grid.Column="2"/>
-        <Button x:Name="cancelLoad" Content="Cancel" Grid.Column="2" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top" Width="286" Click="CancelLoadWheater" Height="36"/>
+        <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="cancelLoad" Content="Cancel" Grid.Column="2" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top" Width="286" Click="CancelLoadWheater" Height="36"/>
         <DataGrid x:Name="weatherEntryDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource wheaterEntryViewSource}}" Margin="10,10,32,324" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idWheaterColumn1" Binding="{Binding Id}" Header="Id" Width="auto"/>
@@ -73,7 +81,7 @@
 
 
 
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,20,0,0" HorizontalAlignment="Left" DataContext="{StaticResource personEntryViewSource}" Grid.Column="4" Width="176" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,20,0,0" HorizontalAlignment="Left" DataContext="{StaticResource personEntryViewSource}" Grid.Column="4" Width="176" Background="{DynamicResource MaterialDesignDarkBackground}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="10"/>
@@ -92,7 +100,7 @@
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Age:" Grid.RowSpan="2"/>
             <TextBox x:Name="ageTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="3" Margin="3,4,0,0" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
         </Grid>
-        <Button x:Name="btnAddPerson" Content="Add person" Grid.Column="4" HorizontalAlignment="Left" Margin="213,20,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddPerson_Click" Height="96"/>
+        <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="btnAddPerson" Content="Add person" Grid.Column="4" HorizontalAlignment="Left" Margin="210,20,0,0" VerticalAlignment="Top" Click="BtnAddPerson_Click" Height="96"/>
         <DataGrid x:Name="personrEntryDataGrid" AutoGenerateColumns="False" Grid.Column="4" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource personEntryViewSource}}" Margin="10,137,32,324" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn1" Binding="{Binding Id}" Header="Id" Width="auto"/>
@@ -100,14 +108,20 @@
                 <DataGridTextColumn x:Name="ageColumn1" Binding="{Binding Age}" Header="Age" Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="OpenSettingsBtn" Content="Settings" HorizontalAlignment="Left" Margin="80,686,0,0" VerticalAlignment="Top" Width="75" Grid.Column="4" Click="OpenSettingsBtn_Click"/>
-        <Button x:Name="deleteAllWeatersBtn" Content="Delete All Weaters" HorizontalAlignment="Left" Margin="42,631,0,0" VerticalAlignment="Top" Width="118" Click="DeleteAllWeatersBtn_Click"/>
-        <Button x:Name="DeleteAllPersonsBtn" Content="Delete All Persons" Grid.Column="4" HorizontalAlignment="Left" Margin="40,616,0,0" VerticalAlignment="Top" Width="121" Click="DeleteAllPersonsBtn_Click"/>
-        <Button x:Name="DeleteWeaterBtn" Content="Delete one entity on weaters" HorizontalAlignment="Left" Margin="42,573,0,0" VerticalAlignment="Top" Width="188" Click="DeleteWeaterBtn_Click" IsEnabled="False"/>
+      <Button Style="{DynamicResource MaterialDesignFloatingActionDarkButton}" x:Name="OpenSettingsBtn" HorizontalAlignment="Left" Margin="215,580,0,0" VerticalAlignment="Top" Grid.Column="4" Click="OpenSettingsBtn_Click">
+        <Viewbox Width="40" Height="40">
+          <Canvas Width="24" Height="24">
+            <Path Data="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" Fill="Black" />
+          </Canvas>
+        </Viewbox>
+      </Button>
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" x:Name="deleteAllWeatersBtn" Content="Delete All Weaters" HorizontalAlignment="Left" Margin="42,631,0,0" VerticalAlignment="Top" Click="DeleteAllWeatersBtn_Click"/>
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" x:Name="DeleteAllPersonsBtn" Content="Delete All Persons" Grid.Column="4" HorizontalAlignment="Left" Margin="40,616,0,0" VerticalAlignment="Top" Click="DeleteAllPersonsBtn_Click"/>
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" x:Name="DeleteWeaterBtn" Content="Delete one entity on weaters" HorizontalAlignment="Left" Margin="42,573,0,0" VerticalAlignment="Top" Click="DeleteWeaterBtn_Click" IsEnabled="False"/>
         <TextBox x:Name="idWeaterToDeleteTextBox" HorizontalAlignment="Left" Height="23" Margin="42,532,0,0" TextWrapping="Wrap" Text="Write ID weater to delete" VerticalAlignment="Top" Width="188" GotFocus="IdWeaterToDeleteTextBox_GotFocus"  />
         <TextBox x:Name="idPersonToDeleteTextBox" Grid.Column="4" HorizontalAlignment="Left" Height="23" Margin="25,518,0,0" TextWrapping="Wrap" Text="Write ID person to delete" VerticalAlignment="Top" Width="263" GotFocus="IdPersonToDelete_GotFocus"/>
-        <Button x:Name="deletePersonBtn" Content="Delete this person" Grid.Column="4" HorizontalAlignment="Left" Margin="40,558,0,0" VerticalAlignment="Top" Width="146" IsEnabled="False" Click="DeletePersonBtn_Click"/>
-        <Grid Grid.Column="2" HorizontalAlignment="Left" Height="459" Margin="0,361,0,0" VerticalAlignment="Top" Width="320" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" x:Name="deletePersonBtn" Content="Delete this person" Grid.Column="4" HorizontalAlignment="Left" Margin="40,558,0,0" VerticalAlignment="Top" Width="146" IsEnabled="False" Click="DeletePersonBtn_Click"/>
+        <Grid Grid.Column="2" HorizontalAlignment="Left" Height="459" Margin="0,361,0,0" VerticalAlignment="Top" Width="320" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0*"/>
                 <ColumnDefinition/>

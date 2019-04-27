@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="TestModelStoreContainer" CdmEntityContainer="TestEntities1">
+  <EntityContainerMapping StorageEntityContainer="test2ModelStoreContainer" CdmEntityContainer="Model1">
     <EntitySetMapping Name="Table">
-      <EntityTypeMapping TypeName="TestModel.Table">
+      <EntityTypeMapping TypeName="test2Model.Table">
         <MappingFragment StoreEntitySet="Table">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="City" ColumnName="City" />
@@ -11,7 +11,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Test">
-      <EntityTypeMapping TypeName="TestModel.Test">
+      <EntityTypeMapping TypeName="test2Model.Test">
         <MappingFragment StoreEntitySet="Test">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />

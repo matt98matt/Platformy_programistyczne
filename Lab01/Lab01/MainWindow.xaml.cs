@@ -16,7 +16,7 @@ namespace Lab01
 {
     public partial class MainWindow : Window
     {
-        TestEntities1 db = new TestEntities1();
+        Model1 db = new Model1();
         CollectionViewSource personEntryViewSource;
         CollectionViewSource wheaterEntryViewSource;
         BackgroundWorker worker = new BackgroundWorker();
@@ -52,6 +52,7 @@ namespace Lab01
 
         private  void Window_Loaded(object sender, RoutedEventArgs e)
         {
+           
             db.Test.Local.Concat(db.Test.ToList());
             db.Table.Local.Concat(db.Table.ToList());
             personEntryViewSource.Source = db.Test.Local;

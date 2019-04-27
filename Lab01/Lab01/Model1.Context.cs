@@ -13,10 +13,10 @@ namespace Lab01
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TestEntities1 : DbContext
+    public partial class Model1 : DbContext
     {
-        public TestEntities1()
-            : base("name=TestEntities1")
+        public Model1()
+            : base("name=Model1")
         {
         }
     
