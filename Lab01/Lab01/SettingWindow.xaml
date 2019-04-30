@@ -40,7 +40,6 @@
         <ComboBox x:Name="ComboCityBox" HorizontalAlignment="Left" Margin="530,123,0,0" VerticalAlignment="Top" Width="120" Loaded="ComboCityBox_Loaded" DropDownClosed="ComboCityBox_DropDownClosed">
             <ListBoxItem Content="Wrocław"/>
             <ListBoxItem Content="Warszawa"/>
-            <ListBoxItem Content="Londyn"/>
             <ListBoxItem Content="Cork"/>
             <ListBoxItem Content="Poznań"/>
             <ListBoxItem Content="Oleśnica"/>

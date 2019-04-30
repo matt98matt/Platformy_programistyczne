@@ -70,7 +70,7 @@
         <Label x:Name="searchLabel" Content="Write city to check weather" Grid.Column="2" HorizontalAlignment="Left" Margin="0,121,0,0" VerticalAlignment="Top" Width="165"/>
         <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="searchBtn" Content="Check" Grid.Column="2" HorizontalAlignment="Left" Margin="186,152,0,0" VerticalAlignment="Top" Width="120" Click="SearchClick"/>
         <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="btnAddAllWheater" Content="Add wheater from someplaces" Grid.Column="2" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top" Width="286" Click="BtnAddAllWheater_Click" Height="36"/>
-        <ProgressBar x:Name="weatherDataProgressBar" Height="20" Grid.Column="2" Margin="0,258,0,558"/>
+        <ProgressBar x:Name="weatherDataProgressBar" Height="20" Grid.Column="2" Margin="0,258,0,548"/>
         <TextBlock x:Name="weatherDataTextBlock" Margin="0,283,10,467" Grid.Column="2"/>
         <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="cancelLoad" Content="Cancel" Grid.Column="2" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top" Width="286" Click="CancelLoadWheater" Height="36"/>
         <DataGrid x:Name="weatherEntryDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource wheaterEntryViewSource}}" Margin="10,10,32,324" RowDetailsVisibilityMode="VisibleWhenSelected">
