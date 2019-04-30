@@ -133,3 +133,17 @@ C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\Ma
 C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\obj\Debug\App.baml
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\OxyPlot.dll
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\OxyPlot.Wpf.dll
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\OxyPlot.pdb
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\OxyPlot.xml
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\OxyPlot.Wpf.pdb
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\OxyPlot.Wpf.xml
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\obj\Debug\ChartWindow.baml
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\obj\Debug\ChartWindow.g.cs
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\LiveCharts.dll
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\LiveCharts.pdb
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\LiveCharts.xml
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\Mateusz\Desktop\pwr6\Platformy_programistyczne\Lab01\Lab01\bin\Debug\LiveCharts.Wpf.xml

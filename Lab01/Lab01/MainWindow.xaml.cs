@@ -10,22 +10,33 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Threading;
+using System.Collections.ObjectModel;
 using System.Xml;
 
 namespace Lab01
 {
     public partial class MainWindow : Window
     {
+       
         Model1 db = new Model1();
         CollectionViewSource personEntryViewSource;
         CollectionViewSource wheaterEntryViewSource;
+       
         BackgroundWorker worker = new BackgroundWorker();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         #region Constructors
         public MainWindow()
         {
+               
+             
+
+
+
+
+
             InitializeComponent();
-            DataContext = this;
+
+            this.DataContext = this;
 
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
@@ -35,10 +46,10 @@ namespace Lab01
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 15);
 
-
-
             personEntryViewSource = (CollectionViewSource)this.FindResource("personEntryViewSource");
             wheaterEntryViewSource = (CollectionViewSource)this.FindResource("wheaterEntryViewSource");
+            
+           
 
             string[] settings = File.ReadAllLines(@"settings.txt"); // lab1 -> bin -> debug
             Properties.Settings.Default.City = settings[0];
@@ -57,6 +68,7 @@ namespace Lab01
             db.Table.Local.Concat(db.Table.ToList());
             personEntryViewSource.Source = db.Test.Local;
             wheaterEntryViewSource.Source = db.Table.Local;
+           
 
             GetWeatherFromWebSometimes();
             dispatcherTimer.Start();
@@ -86,6 +98,12 @@ namespace Lab01
             win2.Show();
         }
         #endregion 
+
+        private void OpenChartsWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChartWindow win3 = new ChartWindow();
+            win3.Show();
+        }
 
         #region WorkerFunctions
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
