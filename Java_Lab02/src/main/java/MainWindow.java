@@ -30,7 +30,8 @@ class MainWindow extends JFrame {
             double y1 = generator.nextInt(screenSize.height-40);
             x2 = randomButton.getX();
             y2 = randomButton.getY();
-
+            double x3 = (x1-x2)/100;
+            double y3 = (y1-y2)/100;
             Timer timer = new Timer(10, new ActionListener() {
 
             @Override
@@ -38,8 +39,7 @@ class MainWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 flag++;
-                double x3 = (x1-x2)/100;
-                double y3 = (y1-y2)/100;
+
                 Point point = new Point();
                 x2 += x3;
                 y2 += y3;
