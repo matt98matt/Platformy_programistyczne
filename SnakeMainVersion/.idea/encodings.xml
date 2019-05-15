@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/out/production/SnakeMainVersion/apple.jpg" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/out/production/SnakeMainVersion/body.jpg" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/out/production/SnakeMainVersion/head.jpg" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/out/production/apple.jpg" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/out/production/body.jpg" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/out/production/cegla2.jpg" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/out/production/head.jpg" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/src/apple.jpg" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/src/body.jpg" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/src/head.jpg" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/src/rock.jpg" charset="windows-1250" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
