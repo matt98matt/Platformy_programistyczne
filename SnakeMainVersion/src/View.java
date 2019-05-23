@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class View extends JPanel implements ActionListener {
 
@@ -11,13 +13,14 @@ public class View extends JPanel implements ActionListener {
     private Image dot;
     private Image apple;
     private Image rock;
+    private Image dotBlue;
     private int apple_x;
     private int apple_y;
     private final int heightMAX = 600;
     private final int heightMIN = 0;
     private final int widthMIN = 0;
     private final int widthMAX = 700;
-    private final int DELAY = 150;
+    private static int DELAY = 150;
     static Timer timer;
     private boolean left = true;
     private boolean right = false;
@@ -26,18 +29,20 @@ public class View extends JPanel implements ActionListener {
     static boolean status = true;
     static int result = 0;
     private Snake snake;
+    private ArrayList<Wall> walls = new ArrayList<Wall>();
     private boolean clickOnTickTimer = true;
+    private static Date dateInit = new Date();
+    private static int helper = 0;
+    private ImageIcon ib = new ImageIcon(this.getClass().getResource("body.jpg"));
+    ImageIcon iBodyBlue = new ImageIcon(this.getClass().getResource("bodyBlue.jpg"));
 
     public View() {
         addKeyListener(new KAdapter());
-
         setBackground(Color.black);
-
 
         ImageIcon ih = new ImageIcon(this.getClass().getResource("head.jpg"));
         head = ih.getImage();
 
-        ImageIcon ib = new ImageIcon(this.getClass().getResource("body.jpg"));
         dot = ib.getImage();
 
         ImageIcon ia = new ImageIcon(this.getClass().getResource("apple.jpg"));
@@ -59,70 +64,114 @@ public class View extends JPanel implements ActionListener {
         }
         generateApple();
 
+        walls.add(new Wall(12,true,90,90));
+        walls.add(new Wall(15,false,70, 300));
+        walls.add(new Wall(15,false,70, 500));
+        walls.add(new Wall(22,true,320,170));
+        walls.add(new Wall(15,false,450, 70));
+        walls.add(new Wall(7,true,450,70));
+        walls.add(new Wall(15,false,450, 200));
+        walls.add(new Wall(7,true,590,130));
+        walls.add(new Wall(5,true,560,420));
+        walls.add(new Wall(15,false,410, 460));
+
+
+        for (Wall element : this.walls) {
+            for(int i = 1; i < element.lenght; i++)
+            {
+                if(element.upright)
+                {
+                    element.x.add(element.x.get(0));
+                    element.y.add(element.y.get(0)+10*i);
+                } else {
+                    element.x.add(element.x.get(0)+10*i);
+                    element.y.add(element.y.get(0));
+                }
+            }
+        }
+
         timer = new Timer(DELAY, this);
     }
 
 
     // metody do sprawdzania,generowania,ruchu
     public void generateApple() {
-        boolean helper = true;
-        while(helper) {
+        while(true) {
             int help = (int) (Math.random()*(widthMAX/10)+1); // rzutowanie na (int) scina to co po przecinku zakres randoma <0 ; 1)
             apple_x = help*10;
-            if(apple_x >= 700)
+            if(apple_x >= 690)
                 apple_x = 680;
             help =(int) (Math.random()*(heightMAX/10)+1);
             apple_y = help*10;
-            if(apple_y >= 600)
+            if(apple_y >= 590)
                 apple_y = 580;
             System.out.println(apple_x + " | " + apple_y);
-            if(!(snake.x.contains(apple_x)) && !(snake.y.contains(apple_y)))
-            {
-                helper = false;
-            }
-        }
-    }
-
-    public void checkCollision() {
-        for(int i=1; i < snake.dots; i++) {
-            if((snake.x.get(i).equals(snake.x.get(0))) && (snake.y.get(i).equals(snake.y.get(0)))) {
-                status = false;
+            if(!AppleCheckCollisionWithHead() && !AppleCheckCollisionWithWalls())
                 break;
+        }
+    }
+
+    public boolean AppleCheckCollisionWithHead() {
+        for(int i=0; i < snake.dots; i++) {
+            if(snake.x.get(i).equals(apple_x) && snake.y.get(i).equals(apple_y))
+            {
+                return true;
             }
         }
-
-        if(snake.x.get(0) >= widthMAX -10 || snake.x.get(0) < 10)
-            status = false;
-
-        if(snake.y.get(0) >= heightMAX -10  || snake.y.get(0) < 10)
-            status = false;
+        return false;
     }
 
-    public void move() {
-        for(int i = snake.dots - 1; i > 0; i--) {
-            snake.x.set(i,snake.x.get(i-1));
-            snake.y.set(i, snake.y.get(i-1));
-        }
-        int tmp;
-
-        if (left) {
-            tmp = snake.x.get(0);
-            snake.x.set(0, tmp-10);
-        }
-        if (right) {
-            tmp = snake.x.get(0);
-            snake.x.set(0, tmp+10);
-        }
-        if (up) {
-            tmp = snake.y.get(0);
-            snake.y.set(0, tmp-10);
-        }
-        if (down) {
-            tmp = snake.y.get(0);
-            snake.y.set(0, tmp+10);
-        }
-
+    public boolean AppleCheckCollisionWithWalls() {
+            for (Wall element : this.walls) {
+                for(int i = 0; i < element.lenght; i++) {
+                    if(element.x.get(i).equals(apple_x) && element.y.get(i).equals(apple_y))
+                        return true;
+                }
+            }
+        return false;
     }
+
+
+
+
+    public void moveApple() {
+            int help = (int) (Math.random()*4+1);
+            int _x = apple_x,_y = apple_y;
+            if(help == 1) //right
+            {
+                apple_x += 10;
+                if(AppleCheckCollisionWithWalls() || apple_x >= 690 || AppleCheckCollisionWithHead())
+                {
+                    apple_x -= 10;
+                }
+            }
+            if(help == 2) //left
+            {
+                apple_x -= 10;
+                if(AppleCheckCollisionWithWalls() || apple_x < 10 || AppleCheckCollisionWithHead())
+                {
+                    apple_x += 10;
+                }
+            }
+            if(help == 3) //up
+            {
+                apple_y -= 10;
+                if(AppleCheckCollisionWithWalls() || apple_y < 10 || AppleCheckCollisionWithHead() )
+                {
+                    apple_y += 10;
+                }
+            }
+            if(help == 4) //down
+            {
+                apple_y += 10;
+                if(AppleCheckCollisionWithWalls() || apple_y >= 590 || AppleCheckCollisionWithHead())
+                {
+                    apple_y -= 10;
+                }
+            }
+    }
+
+
 
     public void eatApple() {
         if ((snake.x.get(0) == apple_x) && (snake.y.get(0) == apple_y)) {
@@ -138,7 +187,46 @@ public class View extends JPanel implements ActionListener {
     }
 
 
+    public void upSpeed() {
+        if(!Board.mediumMode.isEnabled() || !Board.hardMode.isEnabled())
+        {
+            if(result == 30) {
+                timer.setDelay(120);
+            }
+            else if(result == 60) {
+                timer.setDelay(90);
+            } else if(result == 90) {
+                timer.setDelay(60);
+            } else if(result > 200) {
+                timer.setDelay(40);
+            }
+        }
+    }
 
+
+
+    public void killAppleAfterPeriodOfTime(){
+        if(!Board.mediumMode.isEnabled() || !Board.hardMode.isEnabled() )
+        {
+            Date date = new Date();
+
+            if((date.getTime()/1000 - dateInit.getTime()/1000) != 0)
+            {
+                if((date.getTime()/1000 - dateInit.getTime()/1000)%10 == 0   && helper == 0)
+                {
+                    helper = 1;
+                    generateApple();
+                }
+            }
+
+            if(helper >= 50) {
+                helper = 0;
+            }
+            if(helper != 0 ){
+                helper++;
+            }
+        }
+    }
 
 
 
@@ -148,17 +236,20 @@ public class View extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
        if(status) {
+           upSpeed();
+           killAppleAfterPeriodOfTime();
            eatApple();
-            checkCollision();
-            move();
+           status = snake.checkCollision(this.walls,widthMAX,heightMAX);
+           snake.moveSnake(left,right,up,down);
+           if(!Board.hardMode.isEnabled()) {
+               moveApple();
+           }
             clickOnTickTimer = true;
-            System.out.println("hih");
            repaint();
        }
        else {
-           System.out.println("hehe  " + snake.x.get(0) + "   " + snake.y.get(0));
-
            timer.stop();
+           timer.setDelay(DELAY);
            snake = new Snake();
 
            for (int i = 0; i < snake.dots; i++) {
@@ -184,10 +275,30 @@ public class View extends JPanel implements ActionListener {
 
         drawSnake(graph);
         drawBordersMap(graph);
+        if(!Board.hardMode.isEnabled())
+        {
+            drawWalls(graph);
+        }
+    }
+
+    public void drawWalls(Graphics graph)
+    {
+        for (Wall element : this.walls) {
+
+            for(int i=0; i < element.lenght; i++)
+            {
+                graph.drawImage(rock,element.x.get(i),element.y.get(i),this);
+            }
+        }
     }
 
     public void drawSnake(Graphics graph)
     {
+        if(result >= 50) {
+            dot = iBodyBlue.getImage();
+        } else {
+            dot = ib.getImage();
+        }
         if(status) {
             graph.drawImage(apple,apple_x,apple_y,this);
 

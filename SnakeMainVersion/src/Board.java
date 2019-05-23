@@ -10,6 +10,9 @@ public class Board extends JFrame {
     static JLabel result;
     static JButton reset;
     static JButton results;
+    static JButton easyMode;
+    static JButton mediumMode;
+    static JButton hardMode;
 
     public Board () {
         super("Snake");
@@ -34,11 +37,30 @@ public class Board extends JFrame {
         exit.setBounds(20, 50, 80, 30);
         exit.addActionListener(new Exit());
 
-        results = new JButton("Wyniki");
+        results = new JButton("Results");
         results.setMargin(insets);
         results.setFocusable(false);
         results.setBounds(550, 10, 80, 30);
         results.addActionListener(new Results());
+
+        easyMode = new JButton("EASY");
+        easyMode.setEnabled(false);
+        easyMode.setMargin(insets);
+        easyMode.setFocusable(false);
+        easyMode.setBounds(200, 10, 80, 30);
+        easyMode.addActionListener(new Easy());
+
+        mediumMode = new JButton("MEDIUM");
+        mediumMode.setMargin(insets);
+        mediumMode.setFocusable(false);
+        mediumMode.setBounds(300, 10, 80, 30);
+        mediumMode.addActionListener(new Medium());
+
+        hardMode = new JButton("HARD");
+        hardMode.setMargin(insets);
+        hardMode.setFocusable(false);
+        hardMode.setBounds(400, 10, 80, 30);
+        hardMode.addActionListener(new Hard());
 
         reset = new JButton("Reset");
         reset.setMargin(insets);
@@ -60,6 +82,9 @@ public class Board extends JFrame {
         add(result);
         add(reset);
         add(results);
+        add(easyMode);
+        add(mediumMode);
+        add(hardMode);
 
         setVisible(true);
     }
@@ -92,7 +117,40 @@ public class Board extends JFrame {
     }
     private class Results implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            ViewTenLastResults ow = new ViewTenLastResults();
+             new ViewTenLastResults();
+        }
+    }
+
+    private class Easy implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if(!View.timer.isRunning())
+            {
+                easyMode.setEnabled(false);
+                mediumMode.setEnabled(true);
+                hardMode.setEnabled(true);
+            }
+        }
+    }
+
+    private class Medium implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if(!View.timer.isRunning())
+            {
+                easyMode.setEnabled(true);
+                mediumMode.setEnabled(false);
+                hardMode.setEnabled(true);
+            }
+        }
+    }
+
+    private class Hard implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if(!View.timer.isRunning())
+            {
+                easyMode.setEnabled(true);
+                mediumMode.setEnabled(true);
+                hardMode.setEnabled(false);
+            }
         }
     }
 }

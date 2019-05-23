@@ -38,6 +38,10 @@ public class GameSummary extends JDialog {
         ok.setMargin(new Insets(1, 1, 1, 1));
         ok.addActionListener(new END());
 
+        View.result = 0;
+        Board.result.setText("Result: 0");
+        Board.start.setText("Start");
+
         add(ok);
         add(_firstName);
         add(firstnameGamer);
@@ -112,9 +116,7 @@ public class GameSummary extends JDialog {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                    View.result = 0;
-                    Board.result.setText("Result: 0");
-                    Board.start.setText("Start");
+
                     dispose();
                 }}
                 else {
