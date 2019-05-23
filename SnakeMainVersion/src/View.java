@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class View extends JPanel implements ActionListener {
 
@@ -13,28 +12,19 @@ public class View extends JPanel implements ActionListener {
     private Image dot;
     private Image apple;
     private Image rock;
-    private Image dotBlue;
-    private int apple_x;
-    private int apple_y;
+    private ImageIcon ib = new ImageIcon(this.getClass().getResource("body.jpg"));
+    private ImageIcon iBodyBlue = new ImageIcon(this.getClass().getResource("bodyBlue.jpg"));
     private final int heightMAX = 600;
-    private final int heightMIN = 0;
-    private final int widthMIN = 0;
     private final int widthMAX = 700;
     private static int DELAY = 150;
-    static Timer timer;
-    private boolean left = true;
-    private boolean right = false;
-    private boolean up = false;
-    private boolean down = false;
     static boolean status = true;
     static int result = 0;
     private Snake snake;
-    private ArrayList<Wall> walls = new ArrayList<Wall>();
+    private Apple appleObiect;
+    private ArrayList<Wall> walls = new ArrayList<>();
+    static Timer timer;
     private boolean clickOnTickTimer = true;
-    private static Date dateInit = new Date();
-    private static int helper = 0;
-    private ImageIcon ib = new ImageIcon(this.getClass().getResource("body.jpg"));
-    ImageIcon iBodyBlue = new ImageIcon(this.getClass().getResource("bodyBlue.jpg"));
+
 
     public View() {
         addKeyListener(new KAdapter());
@@ -54,15 +44,19 @@ public class View extends JPanel implements ActionListener {
         setFocusable(true);
         initGame();
     }
-    // inicjalizacja
-    public void initGame() {
-        snake = new Snake();
 
+    private void initObiects() {
+        snake = new Snake();
+        appleObiect = new Apple();
         for (int i = 0; i < snake.dots; i++) {
             snake.x.add(250 + i*10);
             snake.y.add(250);
         }
-        generateApple();
+        appleObiect.generateApple(widthMAX,heightMAX,snake,walls);
+    }
+
+    private void initGame() {
+        initObiects();
 
         walls.add(new Wall(12,true,90,90));
         walls.add(new Wall(15,false,70, 300));
@@ -74,7 +68,6 @@ public class View extends JPanel implements ActionListener {
         walls.add(new Wall(7,true,590,130));
         walls.add(new Wall(5,true,560,420));
         walls.add(new Wall(15,false,410, 460));
-
 
         for (Wall element : this.walls) {
             for(int i = 1; i < element.lenght; i++)
@@ -89,105 +82,10 @@ public class View extends JPanel implements ActionListener {
                 }
             }
         }
-
         timer = new Timer(DELAY, this);
     }
 
-
-    // metody do sprawdzania,generowania,ruchu
-    public void generateApple() {
-        while(true) {
-            int help = (int) (Math.random()*(widthMAX/10)+1); // rzutowanie na (int) scina to co po przecinku zakres randoma <0 ; 1)
-            apple_x = help*10;
-            if(apple_x >= 690)
-                apple_x = 680;
-            help =(int) (Math.random()*(heightMAX/10)+1);
-            apple_y = help*10;
-            if(apple_y >= 590)
-                apple_y = 580;
-            System.out.println(apple_x + " | " + apple_y);
-            if(!AppleCheckCollisionWithHead() && !AppleCheckCollisionWithWalls())
-                break;
-        }
-    }
-
-    public boolean AppleCheckCollisionWithHead() {
-        for(int i=0; i < snake.dots; i++) {
-            if(snake.x.get(i).equals(apple_x) && snake.y.get(i).equals(apple_y))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean AppleCheckCollisionWithWalls() {
-            for (Wall element : this.walls) {
-                for(int i = 0; i < element.lenght; i++) {
-                    if(element.x.get(i).equals(apple_x) && element.y.get(i).equals(apple_y))
-                        return true;
-                }
-            }
-        return false;
-    }
-
-
-
-
-    public void moveApple() {
-            int help = (int) (Math.random()*4+1);
-            int _x = apple_x,_y = apple_y;
-            if(help == 1) //right
-            {
-                apple_x += 10;
-                if(AppleCheckCollisionWithWalls() || apple_x >= 690 || AppleCheckCollisionWithHead())
-                {
-                    apple_x -= 10;
-                }
-            }
-            if(help == 2) //left
-            {
-                apple_x -= 10;
-                if(AppleCheckCollisionWithWalls() || apple_x < 10 || AppleCheckCollisionWithHead())
-                {
-                    apple_x += 10;
-                }
-            }
-            if(help == 3) //up
-            {
-                apple_y -= 10;
-                if(AppleCheckCollisionWithWalls() || apple_y < 10 || AppleCheckCollisionWithHead() )
-                {
-                    apple_y += 10;
-                }
-            }
-            if(help == 4) //down
-            {
-                apple_y += 10;
-                if(AppleCheckCollisionWithWalls() || apple_y >= 590 || AppleCheckCollisionWithHead())
-                {
-                    apple_y -= 10;
-                }
-            }
-    }
-
-
-
-    public void eatApple() {
-        if ((snake.x.get(0) == apple_x) && (snake.y.get(0) == apple_y)) {
-            ++snake.dots;
-            result += 10;
-            Board.result.setText("Result: " + result);
-
-            snake.x.add(0); //tak move go przetworzy i da mu punkty
-            snake.y.add(0);
-
-            generateApple();
-        }
-    }
-
-
-    public void upSpeed() {
+    private void upSpeed() {
         if(!Board.mediumMode.isEnabled() || !Board.hardMode.isEnabled())
         {
             if(result == 30) {
@@ -203,46 +101,16 @@ public class View extends JPanel implements ActionListener {
         }
     }
 
-
-
-    public void killAppleAfterPeriodOfTime(){
-        if(!Board.mediumMode.isEnabled() || !Board.hardMode.isEnabled() )
-        {
-            Date date = new Date();
-
-            if((date.getTime()/1000 - dateInit.getTime()/1000) != 0)
-            {
-                if((date.getTime()/1000 - dateInit.getTime()/1000)%10 == 0   && helper == 0)
-                {
-                    helper = 1;
-                    generateApple();
-                }
-            }
-
-            if(helper >= 50) {
-                helper = 0;
-            }
-            if(helper != 0 ){
-                helper++;
-            }
-        }
-    }
-
-
-
-
-
-
-
     public void actionPerformed(ActionEvent e) {
        if(status) {
            upSpeed();
-           killAppleAfterPeriodOfTime();
-           eatApple();
+           result = appleObiect.eatApple(snake,result,widthMAX,heightMAX,walls);
+           Board.result.setText("Result: " + result);
            status = snake.checkCollision(this.walls,widthMAX,heightMAX);
-           snake.moveSnake(left,right,up,down);
+           snake.moveSnake();
            if(!Board.hardMode.isEnabled()) {
-               moveApple();
+               appleObiect.killAppleAfterPeriodOfTime(widthMAX,heightMAX,walls,snake);
+               appleObiect.moveApple(snake,walls);
            }
             clickOnTickTimer = true;
            repaint();
@@ -250,23 +118,17 @@ public class View extends JPanel implements ActionListener {
        else {
            timer.stop();
            timer.setDelay(DELAY);
-           snake = new Snake();
-
-           for (int i = 0; i < snake.dots; i++) {
-               snake.x.add(250 + i*10);
-               snake.y.add(250);
-           }
-           generateApple();
+           initObiects();
 
            status = true;
-           left = true;
-           right = false;
-           up = false;
-           down = false;
+           snake.left = true;
+           snake.right = false;
+           snake.up = false;
+           snake.down = false;
 
            repaint();
 
-           GameSummary gameSummary = new GameSummary();
+           new GameSummary();
        }
     }
 
@@ -281,8 +143,7 @@ public class View extends JPanel implements ActionListener {
         }
     }
 
-    public void drawWalls(Graphics graph)
-    {
+    private void drawWalls(Graphics graph) {
         for (Wall element : this.walls) {
 
             for(int i=0; i < element.lenght; i++)
@@ -292,15 +153,14 @@ public class View extends JPanel implements ActionListener {
         }
     }
 
-    public void drawSnake(Graphics graph)
-    {
+    private void drawSnake(Graphics graph) {
         if(result >= 50) {
             dot = iBodyBlue.getImage();
         } else {
             dot = ib.getImage();
         }
         if(status) {
-            graph.drawImage(apple,apple_x,apple_y,this);
+            graph.drawImage(apple,appleObiect.apple_x,appleObiect.apple_y,this);
 
             for(int i = 0; i < snake.dots; i++) {
                 if(i == 0)
@@ -311,14 +171,15 @@ public class View extends JPanel implements ActionListener {
         }
     }
 
-    public void drawBordersMap(Graphics graph)
-    {
+    private void drawBordersMap(Graphics graph) {
         for (int i = 0; i < widthMAX; i += 10) {
+            int heightMIN = 0;
             graph.drawImage(rock, i, heightMIN, this);
             graph.drawImage(rock, i, heightMAX - 10, this);
         }
 
         for (int i = 10; i < heightMAX; i += 10) {
+            int widthMIN = 0;
             graph.drawImage(rock, widthMIN, i, this);
             graph.drawImage(rock, widthMAX - 10, i, this);
         }
@@ -332,31 +193,31 @@ public class View extends JPanel implements ActionListener {
 
             if(clickOnTickTimer)
             {
-                if ((key == KeyEvent.VK_LEFT) && (!right)) {
-                    left = true;
-                    up = false;
-                    down = false;
+                if ((key == KeyEvent.VK_LEFT) && (!snake.right)) {
+                    snake.left = true;
+                    snake.up = false;
+                    snake.down = false;
                     clickOnTickTimer = false;
                 }
 
-                if ((key == KeyEvent.VK_RIGHT) && (!left)) {
-                    right = true;
-                    up = false;
-                    down = false;
+                if ((key == KeyEvent.VK_RIGHT) && (!snake.left)) {
+                    snake.right = true;
+                    snake.up = false;
+                    snake.down = false;
                     clickOnTickTimer = false;
                 }
 
-                if ((key == KeyEvent.VK_UP) && (!down)) {
-                    up = true;
-                    right = false;
-                    left = false;
+                if ((key == KeyEvent.VK_UP) && (!snake.down)) {
+                    snake.up = true;
+                    snake.right = false;
+                    snake.left = false;
                     clickOnTickTimer = false;
                 }
 
-                if ((key == KeyEvent.VK_DOWN) && (!up)) {
-                    down = true;
-                    right = false;
-                    left = false;
+                if ((key == KeyEvent.VK_DOWN) && (!snake.up)) {
+                    snake.down = true;
+                    snake.right = false;
+                    snake.left = false;
                     clickOnTickTimer = false;
                 }
             }

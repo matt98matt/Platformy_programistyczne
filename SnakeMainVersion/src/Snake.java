@@ -9,8 +9,12 @@ public class Snake {
     public ArrayList<Integer> x;
     public ArrayList<Integer> y;
     public int dots;
+    public boolean left = true;
+    public boolean right = false;
+    public boolean up = false;
+    public boolean down = false;
 
-    public void moveSnake(boolean left,boolean right,boolean up, boolean down) {
+    public void moveSnake() {
         for(int i = this.dots - 1; i > 0; i--) {
             this.x.set(i,this.x.get(i-1));
             this.y.set(i, this.y.get(i-1));
