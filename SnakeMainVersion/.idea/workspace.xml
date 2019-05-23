@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#View#0;class#View#0" />
@@ -36,11 +36,124 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/diagram.uml">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>JAVA</ID>
+              <OriginalElement />
+              <nodes>
+                <node x="792.7007575757575" y="0.0">ViewTenLastResults</node>
+                <node x="0.0" y="44.0">Wall</node>
+                <node x="304.38939393939387" y="276.0">Snake</node>
+                <node x="358.13371212121206" y="903.0">View</node>
+                <node x="519.8893939393938" y="618.5">GameSummary</node>
+                <node x="73.70000000000005" y="575.0">Apple</node>
+                <node x="591.7007575757575" y="0.0">Board</node>
+              </nodes>
+              <notes />
+              <edges>
+                <edge source="View" target="Apple">
+                  <point x="-46.666666666666686" y="-289.5" />
+                  <point x="423.4670454545454" y="853.0" />
+                  <point x="168.45000000000005" y="853.0" />
+                  <point x="-94.75" y="124.0" />
+                </edge>
+                <edge source="View" target="Board">
+                  <point x="102.66666666666669" y="-289.5" />
+                  <point x="572.8003787878788" y="883.0" />
+                  <point x="728.3893939393939" y="883.0" />
+                  <point x="728.3893939393939" y="256.0" />
+                  <point x="732.1007575757575" y="256.0" />
+                  <point x="62.39999999999998" y="113.0" />
+                </edge>
+                <edge source="Apple" target="Wall">
+                  <point x="-94.75" y="-124.0" />
+                  <point x="168.45000000000002" y="256.0" />
+                  <point x="121.80000000000001" y="256.0" />
+                  <point x="34.80000000000001" y="69.0" />
+                </edge>
+                <edge source="Snake" target="Board">
+                  <point x="73.25" y="-124.5" />
+                  <point x="524.1393939393939" y="246.0" />
+                  <point x="607.3007575757575" y="246.0" />
+                  <point x="-62.400000000000006" y="113.0" />
+                </edge>
+                <edge source="GameSummary" target="Board">
+                  <point x="0.0" y="-80.5" />
+                  <point x="607.8893939393938" y="256.0" />
+                  <point x="638.5007575757575" y="256.0" />
+                  <point x="-31.19999999999999" y="113.0" />
+                </edge>
+                <edge source="View" target="Wall">
+                  <point x="-102.66666666666674" y="-289.5" />
+                  <point x="367.4670454545453" y="883.0" />
+                  <point x="41.200000000000045" y="883.0" />
+                  <point x="41.200000000000045" y="256.0" />
+                  <point x="17.399999999999977" y="256.0" />
+                  <point x="-69.60000000000002" y="69.0" />
+                </edge>
+                <edge source="GameSummary" target="View">
+                  <point x="44.0" y="80.5" />
+                  <point x="651.8893939393938" y="853.0" />
+                  <point x="516.8003787878787" y="853.0" />
+                  <point x="46.66666666666663" y="-289.5" />
+                </edge>
+                <edge source="View" target="GameSummary">
+                  <point x="28.0" y="-289.5" />
+                  <point x="498.13371212121206" y="843.0" />
+                  <point x="563.8893939393938" y="843.0" />
+                  <point x="-44.0" y="80.5" />
+                </edge>
+                <edge source="Apple" target="Snake">
+                  <point x="94.75" y="-124.0" />
+                  <point x="357.95000000000005" y="550.0" />
+                  <point x="353.2227272727272" y="550.0" />
+                  <point x="-97.66666666666669" y="124.5" />
+                </edge>
+                <edge source="View" target="Snake">
+                  <point x="-9.333333333333371" y="-289.5" />
+                  <point x="460.8003787878787" y="883.0" />
+                  <point x="463.2" y="883.0" />
+                  <point x="463.2" y="550.0" />
+                  <point x="450.88939393939387" y="550.0" />
+                  <point x="0.0" y="124.5" />
+                </edge>
+                <edge source="Board" target="View">
+                  <point x="0.0" y="113.0" />
+                  <point x="669.7007575757575" y="256.0" />
+                  <point x="706.3893939393939" y="256.0" />
+                  <point x="706.3893939393939" y="863.0" />
+                  <point x="535.4670454545454" y="863.0" />
+                  <point x="65.33333333333331" y="-289.5" />
+                </edge>
+                <edge source="Snake" target="Wall">
+                  <point x="-73.25" y="-124.5" />
+                  <point x="377.63939393939387" y="246.0" />
+                  <point x="156.59999999999997" y="246.0" />
+                  <point x="69.59999999999997" y="69.0" />
+                </edge>
+              </edges>
+              <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="91.50000000000023" y="602.8571428571428" />
+              <SelectedNodes>
+                <node>ViewTenLastResults</node>
+              </SelectedNodes>
+              <Categories>
+                <Category>Constructors</Category>
+                <Category>Fields</Category>
+                <Category>Methods</Category>
+              </Categories>
+              <SCOPE>All</SCOPE>
+              <VISIBILITY>private</VISIBILITY>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Apple.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="34" lean-forward="true" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+            <state relative-caret-position="102">
+              <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#generateApple#0;class#Apple#0" />
@@ -73,7 +186,7 @@
         <entry file="file://$PROJECT_DIR$/src/Wall.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -81,7 +194,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-92">
+            <state relative-caret-position="221">
               <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -126,7 +239,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-19" />
     <option name="y" value="26" />
     <option name="width" value="1936" />
@@ -138,6 +251,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -159,15 +274,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/production/SnakeMainVersion" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
@@ -229,17 +342,19 @@
       <workItem from="1558554712132" duration="310000" />
       <workItem from="1558597575404" duration="1082000" />
       <workItem from="1558611946562" duration="5444000" />
+      <workItem from="1558632190471" duration="604000" />
+      <workItem from="1558643513173" duration="1732000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46290000" />
+    <option name="totallyTimeSpent" value="48626000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14978679" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15298508" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -249,14 +364,14 @@
       <window_info id="simpleUML" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48987207" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48933902" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49946696" weight="0.32936078" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5101279" side_tool="true" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.510661" side_tool="true" weight="0.17009751" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4946695" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.32936078" />
@@ -322,10 +437,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Snake.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+          <folding>
+            <element signature="method#moveSnake#0;class#Snake#0" />
+            <element signature="method#checkCollision#0;class#Snake#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Apple.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="34" lean-forward="true" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+        <state relative-caret-position="102">
+          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#generateApple#0;class#Apple#0" />
@@ -354,24 +480,13 @@
     <entry file="file://$PROJECT_DIR$/src/Wall.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Snake.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-          <folding>
-            <element signature="method#moveSnake#0;class#Snake#0" />
-            <element signature="method#checkCollision#0;class#Snake#0" />
-          </folding>
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-92">
+        <state relative-caret-position="221">
           <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -382,8 +497,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#View#0;class#View#0" />
@@ -397,6 +512,117 @@
             <element signature="method#drawBordersMap#0;class#View#0" />
             <element signature="class#KAdapter#0;class#View#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/diagram.uml">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement />
+          <nodes>
+            <node x="792.7007575757575" y="0.0">ViewTenLastResults</node>
+            <node x="0.0" y="44.0">Wall</node>
+            <node x="304.38939393939387" y="276.0">Snake</node>
+            <node x="358.13371212121206" y="903.0">View</node>
+            <node x="519.8893939393938" y="618.5">GameSummary</node>
+            <node x="73.70000000000005" y="575.0">Apple</node>
+            <node x="591.7007575757575" y="0.0">Board</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="View" target="Apple">
+              <point x="-46.666666666666686" y="-289.5" />
+              <point x="423.4670454545454" y="853.0" />
+              <point x="168.45000000000005" y="853.0" />
+              <point x="-94.75" y="124.0" />
+            </edge>
+            <edge source="View" target="Board">
+              <point x="102.66666666666669" y="-289.5" />
+              <point x="572.8003787878788" y="883.0" />
+              <point x="728.3893939393939" y="883.0" />
+              <point x="728.3893939393939" y="256.0" />
+              <point x="732.1007575757575" y="256.0" />
+              <point x="62.39999999999998" y="113.0" />
+            </edge>
+            <edge source="Apple" target="Wall">
+              <point x="-94.75" y="-124.0" />
+              <point x="168.45000000000002" y="256.0" />
+              <point x="121.80000000000001" y="256.0" />
+              <point x="34.80000000000001" y="69.0" />
+            </edge>
+            <edge source="Snake" target="Board">
+              <point x="73.25" y="-124.5" />
+              <point x="524.1393939393939" y="246.0" />
+              <point x="607.3007575757575" y="246.0" />
+              <point x="-62.400000000000006" y="113.0" />
+            </edge>
+            <edge source="GameSummary" target="Board">
+              <point x="0.0" y="-80.5" />
+              <point x="607.8893939393938" y="256.0" />
+              <point x="638.5007575757575" y="256.0" />
+              <point x="-31.19999999999999" y="113.0" />
+            </edge>
+            <edge source="View" target="Wall">
+              <point x="-102.66666666666674" y="-289.5" />
+              <point x="367.4670454545453" y="883.0" />
+              <point x="41.200000000000045" y="883.0" />
+              <point x="41.200000000000045" y="256.0" />
+              <point x="17.399999999999977" y="256.0" />
+              <point x="-69.60000000000002" y="69.0" />
+            </edge>
+            <edge source="GameSummary" target="View">
+              <point x="44.0" y="80.5" />
+              <point x="651.8893939393938" y="853.0" />
+              <point x="516.8003787878787" y="853.0" />
+              <point x="46.66666666666663" y="-289.5" />
+            </edge>
+            <edge source="View" target="GameSummary">
+              <point x="28.0" y="-289.5" />
+              <point x="498.13371212121206" y="843.0" />
+              <point x="563.8893939393938" y="843.0" />
+              <point x="-44.0" y="80.5" />
+            </edge>
+            <edge source="Apple" target="Snake">
+              <point x="94.75" y="-124.0" />
+              <point x="357.95000000000005" y="550.0" />
+              <point x="353.2227272727272" y="550.0" />
+              <point x="-97.66666666666669" y="124.5" />
+            </edge>
+            <edge source="View" target="Snake">
+              <point x="-9.333333333333371" y="-289.5" />
+              <point x="460.8003787878787" y="883.0" />
+              <point x="463.2" y="883.0" />
+              <point x="463.2" y="550.0" />
+              <point x="450.88939393939387" y="550.0" />
+              <point x="0.0" y="124.5" />
+            </edge>
+            <edge source="Board" target="View">
+              <point x="0.0" y="113.0" />
+              <point x="669.7007575757575" y="256.0" />
+              <point x="706.3893939393939" y="256.0" />
+              <point x="706.3893939393939" y="863.0" />
+              <point x="535.4670454545454" y="863.0" />
+              <point x="65.33333333333331" y="-289.5" />
+            </edge>
+            <edge source="Snake" target="Wall">
+              <point x="-73.25" y="-124.5" />
+              <point x="377.63939393939387" y="246.0" />
+              <point x="156.59999999999997" y="246.0" />
+              <point x="69.59999999999997" y="69.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="91.50000000000023" y="602.8571428571428" />
+          <SelectedNodes>
+            <node>ViewTenLastResults</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Constructors</Category>
+            <Category>Fields</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>
     </entry>

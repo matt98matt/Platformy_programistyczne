@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="803.0795454545455" y="0.0">ViewTenLastResults</node>
+    <node x="0.0" y="44.0">Wall</node>
+    <node x="307.4909090909091" y="276.0">Snake</node>
+    <node x="361.35340909090917" y="903.0">View</node>
+    <node x="524.9909090909091" y="618.5">GameSummary</node>
+    <node x="74.90000000000003" y="575.0">Apple</node>
+    <node x="598.0795454545455" y="0.0">Board</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="View" target="Apple">
+      <point x="-47.50000000000003" y="-289.5" />
+      <point x="427.85340909090917" y="853.0" />
+      <point x="170.65000000000003" y="853.0" />
+      <point x="-95.75" y="124.0" />
+    </edge>
+    <edge source="View" target="Board">
+      <point x="104.49999999999999" y="-289.5" />
+      <point x="579.8534090909092" y="883.0" />
+      <point x="737.4909090909091" y="883.0" />
+      <point x="737.4909090909091" y="256.0" />
+      <point x="742.0795454545455" y="256.0" />
+      <point x="64.0" y="113.0" />
+    </edge>
+    <edge source="Apple" target="Wall">
+      <point x="-95.75" y="-124.0" />
+      <point x="170.65000000000003" y="256.0" />
+      <point x="124.59999999999997" y="256.0" />
+      <point x="35.599999999999966" y="69.0" />
+    </edge>
+    <edge source="Snake" target="Board">
+      <point x="74.25" y="-124.5" />
+      <point x="530.2409090909091" y="246.0" />
+      <point x="614.0795454545455" y="246.0" />
+      <point x="-64.0" y="113.0" />
+    </edge>
+    <edge source="GameSummary" target="Board">
+      <point x="0.0" y="-80.5" />
+      <point x="614.9909090909091" y="256.0" />
+      <point x="646.0795454545455" y="256.0" />
+      <point x="-32.0" y="113.0" />
+    </edge>
+    <edge source="View" target="Wall">
+      <point x="-104.50000000000003" y="-289.5" />
+      <point x="370.85340909090917" y="883.0" />
+      <point x="42.400000000000034" y="883.0" />
+      <point x="42.400000000000034" y="256.0" />
+      <point x="17.80000000000001" y="256.0" />
+      <point x="-71.19999999999999" y="69.0" />
+    </edge>
+    <edge source="GameSummary" target="View">
+      <point x="45.0" y="80.5" />
+      <point x="659.9909090909091" y="853.0" />
+      <point x="522.8534090909092" y="853.0" />
+      <point x="47.49999999999997" y="-289.5" />
+    </edge>
+    <edge source="View" target="GameSummary">
+      <point x="28.49999999999997" y="-289.5" />
+      <point x="503.85340909090917" y="843.0" />
+      <point x="569.9909090909091" y="843.0" />
+      <point x="-45.0" y="80.5" />
+    </edge>
+    <edge source="Apple" target="Snake">
+      <point x="95.75" y="-124.0" />
+      <point x="362.15000000000003" y="550.0" />
+      <point x="356.9909090909091" y="550.0" />
+      <point x="-99.0" y="124.5" />
+    </edge>
+    <edge source="View" target="Snake">
+      <point x="-9.500000000000028" y="-289.5" />
+      <point x="465.85340909090917" y="883.0" />
+      <point x="468.40000000000003" y="883.0" />
+      <point x="468.40000000000003" y="550.0" />
+      <point x="455.9909090909091" y="550.0" />
+      <point x="0.0" y="124.5" />
+    </edge>
+    <edge source="Board" target="View">
+      <point x="0.0" y="113.0" />
+      <point x="678.0795454545455" y="256.0" />
+      <point x="715.4909090909091" y="256.0" />
+      <point x="715.4909090909091" y="863.0" />
+      <point x="541.8534090909092" y="863.0" />
+      <point x="66.49999999999999" y="-289.5" />
+    </edge>
+    <edge source="Snake" target="Wall">
+      <point x="-74.25" y="-124.5" />
+      <point x="381.7409090909091" y="246.0" />
+      <point x="160.2" y="246.0" />
+      <point x="71.19999999999999" y="69.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="91.50000000000023" y="900.0" />
+  <SelectedNodes>
+    <node>ViewTenLastResults</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
